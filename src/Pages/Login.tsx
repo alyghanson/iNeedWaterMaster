@@ -1,9 +1,9 @@
-// Home.tsx
+// Login.tsx
 import React from 'react';
 
 // renders opetions to login or register 
 // TODO paths need to be created and login feature needs to be built
-function Home() {
+function Login() {
   return (
     <div>
       <h1>Welcome to iNeedWater</h1>
@@ -14,4 +14,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Login;
