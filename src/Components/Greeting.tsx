@@ -1,4 +1,3 @@
-import "../Stylesheets/Greetings.css"
 // Custom greeting based on time of day and user
 const Greetings = () => {
     let myDate = new Date();

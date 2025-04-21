@@ -10,7 +10,7 @@ export interface ActionProps {
 
 // Defines the actions and what they contain
 const Action = ({name, URL}: ActionProps) => {
-return <div><a href={URL}>{name}</a></div>
+return <a href={URL}>{name}</a>   
 }
 
 export default Action;

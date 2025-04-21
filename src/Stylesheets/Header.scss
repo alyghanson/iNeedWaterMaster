@@ -1,0 +1,22 @@
+//Sass color variables
+$link-color: #4478A6;
+$hover-color: darken($link-color, 20%);
+$visited-color: lighten($link-color, 20%);
+
+//link styling
+a{
+    color: $link-color;
+    text-decoration: none;
+    background: transparent;
+    transition: background 1s ease, padding 1s ease;
+
+    &:hover{
+      color: $hover-color;
+      background: lighten($hover-color, 65%);
+      padding: 4px 0;
+    }
+
+    &:visited{
+      color: $visited-color;
+    }
+  }
