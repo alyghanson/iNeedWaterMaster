@@ -1,9 +1,9 @@
 import Action, { ActionProps } from "./Action";
 
 //* Actions information list  TODO update paths to correct options
-const ACTIONS: ActionProps[] = [{name: "Edit", URL: "/"}, 
-    {name: "How it Works", URL: "/About"},
-    {name: "My Settings", URL: "/"}]
+const ACTIONS: ActionProps[] = [{name: "PlantList", URL: "/plantlist"}, 
+    {name: "Calendar", URL: "/calandar"},
+    ]
 
 const Actions = () => {
     return <div> {ACTIONS.map(action => <Action {...action} />)} </div>

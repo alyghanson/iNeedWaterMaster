@@ -6,7 +6,7 @@ Official Plant watering app being built. This is a long term project based of th
 
 **April**:
 
-- Build Mockup JSON Plant dict containing:
+- Build Mockup JSON Plant dict (in Data Folder) containing:
   1. Plant name
   2. Description
   3. Last water date

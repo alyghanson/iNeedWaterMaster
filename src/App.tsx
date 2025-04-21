@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Pages/Home'; // Your home component
-import About from './Pages/About'; // Your about component
-import Main from './Pages/Main';
-import Edit from './Pages/Edit';
+import Home from './Pages/Home'; // Homepage
+import Calandar from './Pages/Calandar'; // Aboutpage
+import PlantList from './Pages/PlantList'; //Plant list page
+import Login from './Pages/Login';
 
 
 //Build Edit page
@@ -12,10 +12,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/main" element={<Main />} />
-        <Route path="/edit" element={<Edit />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/calandar" element={<Calandar />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/plantlist" element={<PlantList />} />
       </Routes>
     </BrowserRouter>
   );

@@ -9,7 +9,7 @@ const Greetings = () => {
     if (hours < 12)
         greet = "Good morning "
     else if (hours >= 12 && hours < 15)
-        greet = "It's a good afternoon, isn't it "
+        greet = "Good afternoon"
     else if (hours > 15)
         greet = "Good evening "
     return <span className="Heading">{greet}, {user}!</span>
