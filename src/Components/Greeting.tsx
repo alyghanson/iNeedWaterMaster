@@ -7,11 +7,11 @@ const Greetings = () => {
     let user = "Aly & Erik" // update this when user is found from login
 
     if (hours < 12)
-        greet = "Good morning "
+        greet = "Good Morning "
     else if (hours >= 12 && hours < 15)
-        greet = "It's a good afternoon, isn't it "
+        greet = "Good Afternoon "
     else if (hours > 15)
-        greet = "Good evening "
+        greet = "Good Evening "
     return <span className="Heading">{greet}, {user}!</span>
 }
 export default Greetings;
