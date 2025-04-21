@@ -1,5 +1,5 @@
 import Actions from "./Actions";
-import "../Stylesheets/scss/Header.scss"
+import "../Stylesheets/Header.scss"
 
 // The header that will be displayed on all pages
 const Header = () => {
