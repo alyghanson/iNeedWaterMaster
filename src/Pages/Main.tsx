@@ -1,15 +1,13 @@
 // Main App page
-import Greetings from "../Components/Greeting";
-import Actions from "../Components/Actions";
 import Header from "../Components/Header";
+import "../Stylesheets/Main.scss"
 
 function Main() {
   return (
     <div>
-      <div><Header/></div>
-        <Greetings/>
-        <p>What would you like to do?</p>
-        <Actions/>
+      <body>
+      <Header/>
+      <p>This page will hold the plant cards.</p></body>
     </div>
   );
 }
