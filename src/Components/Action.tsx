@@ -1,4 +1,5 @@
 // import "../Stylesheets/Action.sass"
+import "../Stylesheets/Header.scss"
 
 /**Action card props */
 export interface ActionProps {
