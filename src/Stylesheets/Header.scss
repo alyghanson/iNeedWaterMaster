@@ -5,28 +5,37 @@
 .header {
   font-family: "Bodoni Moda SC";
   color: $background-color;
-  padding: 10px 20px;
+  padding: 0px 20px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  box-shadow:0px 5px 41px 15px rgba(0, 0, 0, 0.65);
+  box-shadow:0px 5px 41px 15px $shadow-color;
 
   .title {
     font-size: 64px;
     letter-spacing: 11%;
     color: $text-color;
   };
+
+  .logo {
+    height: 200px;
+    width: 200px;
+    padding-left: 35px;
+    padding-top: 10px;
+    transition: box-shadow 0;
+  }
+
   a {
     color: $text-color;
-    padding: 40px;
+    margin: 10px;
+    padding: 20px;
     font-size: 20px;
+    transition: box-shadow 2s;
+    border-radius: 20%;
   }
-}
-
-.logo {
-  height: 200px;
-  width: 200px;
-  padding-left: 35px;
-  padding-top: 10px;
+  
+  a:hover {
+    box-shadow: 0px 10px 18px 3px $shadow-color;;
+  }
 }
