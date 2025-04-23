@@ -1,5 +1,6 @@
 import "../Stylesheets/Header.scss"
-import cat_photo from "./cat_logo.png"
+import cat_photo from "../Pictures/cat_logo.png"
+import divider from "../Pictures/Divider.png"
 
 // The header that will be displayed on all pages
 const Header = () => {
@@ -9,12 +10,12 @@ const Header = () => {
             <a href="/">
                 <img src={cat_photo} alt="cat photo" className="logo" />
             </a>
-
+            <img className="divider" src={divider} alt="nothing"/>
             <p className="title">iNeedWater</p>
-            
+            <img className="divider" src={divider} alt="nothing"/>
             <nav>
-                <a href="/plantlist">Plant List</a>
-                <a href="/calendar">Calendar</a>
+                <a className="menuButton" href="/plantlist">Plant List</a>
+                <a className="menuButton" href="/calendar">Calendar</a>
             </nav>
         </header>
     </div>
