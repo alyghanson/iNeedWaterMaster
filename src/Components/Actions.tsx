@@ -1,6 +1,9 @@
 import Action, { ActionProps } from "./Action";
 import "../Stylesheets/Header.scss"
 
+// TODO CHANGE THIS TO PLANT CARD USING PLANT PROPS
+
+
 //* Actions information list  TODO update paths to correct options
 const ACTIONS: ActionProps[] = [{name: "Plant List", URL: "/plantlist"}, 
     {name: "Calendar", URL: "/calendar"},

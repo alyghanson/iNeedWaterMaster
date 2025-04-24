@@ -1,4 +1,6 @@
 // import "../Stylesheets/Action.sass"
+
+// TODO CHANGE THIS TO PLANT PROPS
 import "../Stylesheets/Header.scss"
 
 /**Action card props */
