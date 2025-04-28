@@ -27,11 +27,14 @@ export interface PlantProps {
 // Defines the actions and what they contain -> must formate into dates for the next water date to exist
 const Plant = ({name, scientific_name, description, last_water_date, watering_frequency_days, soil_type, 
     plant_type, location, last_fertilization}: PlantProps) => {
+        
+        /** turn date strings into Dates for calculations */
         const lastWateredDate = new Date(last_water_date);
         const nextWaterDate = new Date(
             /**add the days to the last water date */
             lastWateredDate.getTime()+ watering_frequency_days * 24 * 60 * 60 * 1000
             );
+        /** not used yet, but incase needed... */
         const lastFertalizedDate = new Date(last_fertilization);
 
         /** need to format back to strings*/

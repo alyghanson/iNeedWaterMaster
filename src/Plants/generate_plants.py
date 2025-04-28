@@ -43,7 +43,7 @@ plant_types = [
 ]
 
 locations = [
-    "Living room", "Bedroom", "Kitchen", "Office desk", "Bathroom", "Balcony", "Greenhouse"
+    "Upstairs", " Downstairs Bedroom", "Kitchen", "Music Room", "Office", "Upstairs Bedroom", "Bathroom", "Living Room"
 ]
 
 def random_date_within_days(days_range):
@@ -63,13 +63,15 @@ for i in range(100):
         "watering_frequency_days": random.randint(3, 14),
         "soil_type": random.choice(soil_types),
         "plant_type": random.choice(plant_types),
-        "location": f"{random.choice(locations)}, near {random.choice(['north', 'south', 'east', 'west'])}-facing window",
+        "location": random.choice(locations),
         "last_fertilization": random_date_within_days(60)
     }
     plants.append(plant)
 
-# Save to JSON file
-with open("mock_plants.json", "w") as file:
-    json.dump({"plants": plants}, file, indent=2)
+# Save to TS file
+with open("mock_plants.ts", "w") as file:
+    file.write("export const mockPlants = ")
+    json.dump(plants, file, indent=2)
+    file.write(";\n")
 
-print("✅ Mock plant data with scientific names saved to 'mock_plants.json'")
+print("Mock plant data with scientific names saved to 'mock_plants.ts'")
