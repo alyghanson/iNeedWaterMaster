@@ -24,20 +24,33 @@ export interface PlantProps {
     last_fertilization: string;
 }
 
-// Defines the actions and what they contain
+// Defines the actions and what they contain -> must formate into dates for the next water date to exist
 const Plant = ({name, scientific_name, description, last_water_date, watering_frequency_days, soil_type, 
     plant_type, location, last_fertilization}: PlantProps) => {
+        const lastWateredDate = new Date(last_water_date);
+        const nextWaterDate = new Date(
+            /**add the days to the last water date */
+            lastWateredDate.getTime()+ watering_frequency_days * 24 * 60 * 60 * 1000
+            );
+        const lastFertalizedDate = new Date(last_fertilization);
+
+        /** need to format back to strings*/
+        const formattedLastWateredDate = lastWateredDate.toLocaleDateString();
+        const formattedNextWaterDate = nextWaterDate.toLocaleDateString();
+        const formattedLastFertilizedDate = lastFertalizedDate.toLocaleDateString();
+      
 
         return (
         <div className="plant-card">
         <h2>{name}</h2>
         <h3><em>{scientific_name}</em></h3>
         <p>{description}</p>
-        <p>Last watered: {new Date(last_water_date).toLocaleDateString()}</p>
+        <p>Last watered: {formattedLastWateredDate}</p>
+        <p>Next water date: {formattedNextWaterDate}</p>
         <p>Water every {watering_frequency_days} days</p>
         <p>Soil type: {soil_type}</p>
         <p>Location: {location}</p>
-        <p>Last fertilized: {new Date(last_fertilization).toLocaleDateString()}</p>
+        <p>Last fertilized: {formattedLastFertilizedDate}</p>
         <p>Plant type: {plant_type}</p>
       </div>)
 };
