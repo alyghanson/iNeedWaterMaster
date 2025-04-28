@@ -6,10 +6,8 @@ import Plants from "../Components/Plants";
 function Main() {
   return (
     <div>
-      <body>
       <Header/>
       <Plants/>
-      </body>
     </div>
   );
 }

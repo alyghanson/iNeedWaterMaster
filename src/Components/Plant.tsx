@@ -1,4 +1,4 @@
-
+import "../Stylesheets/Plant.scss"
 /**Props for Plant card that defines what the JSON file contains. 
 Eventually this will describe a database */
 
@@ -44,18 +44,13 @@ const Plant = ({name, scientific_name, description, last_water_date, watering_fr
       
 
         return (
-        <div className="plant-card">
-        <h2>{name}</h2>
-        <h3><em>{scientific_name}</em></h3>
-        <p>{description}</p>
-        <p>Last watered: {formattedLastWateredDate}</p>
-        <p>Next water date: {formattedNextWaterDate}</p>
-        <p>Water every {watering_frequency_days} days</p>
-        <p>Soil type: {soil_type}</p>
-        <p>Location: {location}</p>
-        <p>Last fertilized: {formattedLastFertilizedDate}</p>
-        <p>Plant type: {plant_type}</p>
-      </div>)
+        <div className="card">
+            <div className="name">{name}</div>
+            <div className="text-box">
+                <div className="content">{scientific_name}</div>
+                <div className="content">{formattedLastWateredDate}</div>
+            </div>
+        </div>);
 };
 
 export default Plant;

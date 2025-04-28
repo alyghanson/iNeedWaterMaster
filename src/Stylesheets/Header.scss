@@ -3,13 +3,16 @@
 // Header for all pages
 .header {
   font-family: "Bodoni Moda SC";
-  color: $background-color;
-  padding: 0px 20px;
+  background-color: $background-color;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
   box-shadow:0px 5px 41px 15px $shadow-color;
+  position: fixed;
+  z-index: 999;
+  right: 0px;
+  top: 0px;
 
   .title {
     font-size: 45px;
