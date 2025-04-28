@@ -1,5 +1,4 @@
-{
-  "plants": [
+export const mockPlants = [
     {
       "name": "Areca Palm",
       "scientific_name": "Dypsis lutescens",
@@ -1100,5 +1099,4 @@
       "location": "Bathroom, near north-facing window",
       "last_fertilization": "2025-02-26"
     }
-  ]
-}
+]
