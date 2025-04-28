@@ -2,14 +2,9 @@
 
 Official Plant watering app being built. This is a long term project based of the POC in iNeedWater
 
-## Toolbar
-
-- Make thinner
-- Git rid of button shadow on cat icon.
-
 ## Generating plants & Plant Dict
 
-To write new plant JSON for 100 sample plants:
+To write new plant component for 100 sample plants:
 
 ```bash
 cd src
@@ -43,8 +38,6 @@ plant = {
 - Homepage
   - Plant Card
     - Upload Picture
-    - Name
-    - Last watering date
     - Click Action -> **Todo: will pop up modal**
   - Add Card Button
     - Click Action -> **Todo: will pop up modal**
