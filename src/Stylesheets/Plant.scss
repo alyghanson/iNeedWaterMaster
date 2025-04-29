@@ -2,40 +2,48 @@
 
 .card {
     font-family: $bodyfont;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+    color: $text-color;
     border-radius: 20px;
     background-color: rgba(211, 211, 211, 0.469);
-    width: 150px;
-    height: 250px;
-    color: $text-color;
     z-index: 0;
+
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    justify-content: flex-start;
+
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
     transition: background-color 1;
     transition: box-shadow 1;
 
-
-    .name {
-        font-family: $headfont;
-        text-transform: uppercase;
-        padding: 10%;
-    };
-
-    .text-box {
-        padding: 10%;
-
-        .content {
-            font-family: $bodyfont;
-        };
-    };    
-};
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    padding: 1%
+};    
 
 .card:hover {
     background-color: rgba(231, 231, 231, 0.863);
     box-shadow: 5px 5px 34px 0px #1b1c0d8d;
     
 }
+
+.text-box {
+    padding: 2px 16px;
+};
+
+.plantPicture {
+    object-fit: cover;
+    max-width: 150px;
+
+};
+
+.name {
+    font-family: $headfont;
+    text-transform: uppercase;
+    padding: 10%;
+};
+
+.content {
+    font-family: $bodyfont;
+};
 

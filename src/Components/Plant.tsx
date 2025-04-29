@@ -1,5 +1,5 @@
 import "../Stylesheets/Plant.scss"
-import flower from "../Pictures/flower.jpg"
+import flower from "../Pictures/vintage-illustration-watering-can.png"
 /**Props for Plant card that defines what the JSON file contains. 
 Eventually this will describe a database */
 
@@ -42,15 +42,22 @@ const Plant = ({name, scientific_name, description, last_water_date, watering_fr
         const formattedLastWateredDate = lastWateredDate.toLocaleDateString();
         const formattedNextWaterDate = nextWaterDate.toLocaleDateString();
         const formattedLastFertilizedDate = lastFertalizedDate.toLocaleDateString();
-      
+
+        /**TODO days left until water (can be used for sorting) need to build
+         * function to handle this. must handle negative days and make it zero.
+         * Mark with URGENT
+         */
+
 
         return (
         <div className="card">
-            <div className="name">{name}</div>
-            <img src={flower} className="logo"></img>
             <div className="text-box">
+                <div className="name">{name}</div>
+                <img src={flower} className="plantPicture"></img>
                 <div className="content">{scientific_name}</div>
-                <div className="content">{formattedLastWateredDate}</div>
+                <div className="content">{location}</div>
+                <div className="content">Water next on: {formattedLastWateredDate}</div>
+
             </div>
         </div>);
 };
