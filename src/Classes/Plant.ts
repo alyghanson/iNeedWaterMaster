@@ -25,7 +25,7 @@ class Plant {
 
     constructor (params: Record <string, any>) {
         this.name = params.name;
-        this.commonName = params.commonName;
+        this.commonName = params.common_name;
         this.scientificName = params.scientific_name;
         this.description = params.decription;
         this.formattedLastWaterDate = params.formattedLast_water_date;
