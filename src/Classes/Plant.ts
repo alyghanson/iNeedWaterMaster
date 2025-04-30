@@ -1,8 +1,9 @@
 
 
 class Plant {
-    /**Name -> words to be displayed on action card */
     name: string;
+    /**Common Name -> words to be displayed on action card */
+    commonName: string;
     /**Sci Name -> to be displayed in italics */
     scientificName: string;
     /** Descr. -> summary of info */
@@ -19,13 +20,12 @@ class Plant {
     location: string;
     /**last fert -> date last done, not used in calculations*/
     formattedLastFertilization: string;
-    /**computed  */
-    daysUntilWater: number;
     /**computed next watering date */
     nextWaterDate: string;
 
     constructor (params: Record <string, any>) {
         this.name = params.name;
+        this.commonName = params.commonName;
         this.scientificName = params.scientific_name;
         this.description = params.decription;
         this.formattedLastWaterDate = params.formattedLast_water_date;
@@ -34,23 +34,9 @@ class Plant {
         this.plantType = params.plant_type;
         this.location = params.location;
         this.formattedLastFertilization = params.last_fertilization;
-        this.daysUntilWater = this.getDaysUntilWater();
         this.nextWaterDate = this.getNextWaterDateString();
-
     };
-    //         /** turn date strings into Dates for calculations */
-    //         const lastWateredDate = new Date(last_water_date);
-    //         const nextWaterDate = new Date(
-    //             /**add the days to the last water date */
-    //             lastWateredDate.getTime()+ watering_frequency_days * 24 * 60 * 60 * 1000
-    //             );
-    //         /** not used yet, but incase needed... */
-    //         const lastFertalizedDate = new Date(last_fertilization);
-    
-    //         /** need to format back to strings*/
-    //         const formattedLastWateredDate = lastWateredDate.toLocaleDateString();
-    //         const formattedNextWaterDate = nextWaterDate.toLocaleDateString();
-    //         const formattedLastFertilizedDate = lastFertalizedDate.toLocaleDateString();
+
     
     getNextWaterDate(): Date {
         /**computes the next water date from days between watering and last water date */
@@ -66,14 +52,17 @@ class Plant {
         return nextWaterDate.toLocaleDateString();
     };
 
-    getDaysUntilWater(): number {
+    get daysUntilWater() {
         /**Computes days left before watering is needed. */
         const currentDate = new Date();
         // Turn date string into DateTime
         const lastWaterDate = new Date(this.formattedLastWaterDate);
         // compute
         const days = currentDate.getTime() - lastWaterDate.getTime();
-        
+
+        // Check to make sure it is in the correct format here might not be number of days yet
+        console.log(days)
         return days;
-    };
+    }
 };
+export default Plant;

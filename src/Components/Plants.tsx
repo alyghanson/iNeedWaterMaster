@@ -1,15 +1,14 @@
 import "../Stylesheets/Plants.scss"
 
-import Plant from "./Plant";
-import {mockPlants} from "../Plants/mock_plants";
-import { PlantProps } from "./Plant";
+import Plant from "./PlantProfileCard";
+import {plants} from "../Plants/mock_plants";
 
 const Plants = () => {
 
   return (
     <div className="plantslist">
-      {mockPlants.map((plant) => (
-        <Plant key={plant.name} {...plant} />
+      {plants.map((p) => (
+        <Plant key={p.name} plant={p} overdue={false} />
       ))}
     </div>
   );

@@ -1,6 +1,7 @@
 import random
 import json
 from datetime import datetime, timedelta
+from generate_name import generate_name
 
 # Plant names and their mock scientific equivalents
 plant_data = {
@@ -52,11 +53,16 @@ def random_date_within_days(days_range):
 # Generate 100 mock plants
 plants = []
 for i in range(100):
-    name = random.choice(list(plant_data.keys()))
-    scientific_name = plant_data[name]
+    
+    #length of random name
+    unique_name = generate_name()
+    
+    common_name = random.choice(list(plant_data.keys()))
+    scientific_name = plant_data[common_name]
     
     plant = {
-        "name": name,
+        "name": unique_name,
+        "common_name": common_name,
         "scientific_name": scientific_name,
         "description": random.choice(descriptions),
         "last_water_date": random_date_within_days(14),
@@ -70,8 +76,10 @@ for i in range(100):
 
 # Save to TS file
 with open("mock_plants.ts", "w") as file:
+    file.write("import Plant from \"../Classes/Plant\";\n")
     file.write("const mockPlants = ")
-    json.dump(plants, file, indent=2)
-    file.write(";\n export const plants = mockPlants.map(plant => new Plant(plant));")
 
+    json.dump(plants, file, indent=2)
+    file.write(";\nexport const plants = mockPlants.map(plant => new Plant(plant));")
+    
 print("Mock plant data with scientific names saved to 'mock_plants.ts'")
