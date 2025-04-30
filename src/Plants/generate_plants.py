@@ -70,8 +70,8 @@ for i in range(100):
 
 # Save to TS file
 with open("mock_plants.ts", "w") as file:
-    file.write("export const mockPlants = ")
+    file.write("const mockPlants = ")
     json.dump(plants, file, indent=2)
-    file.write(";\n")
+    file.write(";\n export const plants = mockPlants.map(plant => new Plant(plant));")
 
 print("Mock plant data with scientific names saved to 'mock_plants.ts'")

@@ -45,7 +45,7 @@ const Plant = ({name, scientific_name, description, last_water_date, watering_fr
 
         /**TODO days left until water (can be used for sorting) need to build
          * function to handle this. must handle negative days and make it zero.
-         * Mark with URGENT
+         *  Mark with URGENT
          */
 
 

@@ -1,4 +1,4 @@
-export const mockPlants = [
+const mockPlants = [
   {
     "name": "ZZ Plant",
     "scientific_name": "Zamioculcas zamiifolia",
@@ -1100,3 +1100,5 @@ export const mockPlants = [
     "last_fertilization": "2025-04-04"
   }
 ];
+
+export const plants = mockPlants.map(plant => new Plant(plant));
