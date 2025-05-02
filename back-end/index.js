@@ -14,7 +14,7 @@ const client = new Client({
 });
 
 //Comment out to test routes
-// client.connect();
+client.connect();
 
 //Create table
 //TODO: switch to correct information PLANTS NOT USERS
@@ -24,7 +24,7 @@ const createTable = async () => {
     email VARCHAR (255) UNIQUE NOT NULL, age INT NOT NULL);`)
   };
 // comment out to test routes
-//   createTable();
+  createTable();
 
   //Parse the POST method:
   const app = express();
