@@ -12,7 +12,9 @@ const client = new Client({
   password: '1234',
   port: 5432,
 });
-client.connect();
+
+//Comment out to test routes
+// client.connect();
 
 //Create table
 //TODO: switch to correct information PLANTS NOT USERS
@@ -21,8 +23,8 @@ const createTable = async () => {
     (id serial PRIMARY KEY, name VARCHAR (255) UNIQUE NOT NULL, 
     email VARCHAR (255) UNIQUE NOT NULL, age INT NOT NULL);`)
   };
-  
-  createTable();
+// comment out to test routes
+//   createTable();
 
   //Parse the POST method:
   const app = express();
