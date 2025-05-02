@@ -1,3 +1,6 @@
+#Huge big file
+.data
+
 # Logs
 logs
 *.log

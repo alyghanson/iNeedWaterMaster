@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const GetAllUser = () => {
   const [users, setAllUser] = useState();
   useEffect(() => {
-    axios.get("http://localhost:3000/api")
+    axios.get("http://localhost:3001/api")
     .then((response) => console.log(response))
     
   }, []);

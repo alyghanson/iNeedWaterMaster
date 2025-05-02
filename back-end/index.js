@@ -10,7 +10,7 @@ const client = new Client({
   host: 'db',
   database: 'postgres',
   password: '1234',
-  port: 5173,
+  port: 5432,
 });
 
 //Comment out to test routes
@@ -69,5 +69,5 @@ const createTable = async () => {
     }    
   });
 
-  //specify port for listener: port 3000 here
+  //specify port for listener: port 3001 here
   app.listen(3001, () => console.log(`App running on port 3001.`));
