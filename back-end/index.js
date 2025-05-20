@@ -37,19 +37,19 @@ const createTable = async () => {
 
   //create GET method to get information from table
   //TODO change to correct table
-  app.get('/api/all', async (req, res) => {
-    try {
-      const response = await client.query(`SELECT * FROM users`);
+  // app.get('/api/all', async (req, res) => {
+  //   try {
+  //     const response = await client.query(`SELECT * FROM users`);
       
-      if(response){
-        res.status(200).send(response.rows);
-      }
+  //     if(response){
+  //       res.status(200).send(response.rows);
+  //     }
       
-    } catch (error) {
-      res.status(500).send('Error');
-      console.log(error);
-    } 
-  });
+  //   } catch (error) {
+  //     res.status(500).send('Error');
+  //     console.log(error);
+  //   } 
+  // });
 
   //create POST method to get info from form
   //TODO chenge to plant form
@@ -69,5 +69,5 @@ const createTable = async () => {
     }    
   });
 
-  //specify port for listener: port 3001 here
+  //specify port for listener: port 3000 here
   app.listen(3001, () => console.log(`App running on port 3001.`));
