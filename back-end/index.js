@@ -1,6 +1,7 @@
 import pg from'pg';
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 //start conection to postgres
 const { Client } = pg;
@@ -20,14 +21,16 @@ client.connect();
 //TODO: switch to correct information PLANTS NOT USERS
 const createTable = async () => { 
     await client.query(`CREATE TABLE IF NOT EXISTS users 
-    (id serial PRIMARY KEY, name VARCHAR (255) UNIQUE NOT NULL, 
-    email VARCHAR (255) UNIQUE NOT NULL, age INT NOT NULL);`)
+    (id serial PRIMARY KEY, name VARCHAR (255) NOT NULL, 
+    email VARCHAR (255) NOT NULL, age INT NOT NULL);`)
   };
 // comment out to test routes
   createTable();
 
-  //Parse the POST method:
   const app = express();
+  //Cors to allow cross-origin requests
+  app.use(cors());
+  //Parse the POST method:
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
@@ -37,23 +40,25 @@ const createTable = async () => {
 
   //create GET method to get information from table
   //TODO change to correct table
-  // app.get('/api/all', async (req, res) => {
-  //   try {
-  //     const response = await client.query(`SELECT * FROM users`);
+  app.get('/api/all', async (req, res) => {
+    try {
+      const response = await client.query(`SELECT * FROM users`);
       
-  //     if(response){
-  //       res.status(200).send(response.rows);
-  //     }
+      if(response){
+        res.status(200).send(response.rows);
+      }
       
-  //   } catch (error) {
-  //     res.status(500).send('Error');
-  //     console.log(error);
-  //   } 
-  // });
+    } catch (error) {
+      console.log("FAILED: `app.get` Error at line 52 or below in back-end/index.js" );
+      res.status(500).send('Error');
+      console.log(error);
+    } 
+  });
 
   //create POST method to get info from form
-  //TODO chenge to plant form
+  //TODO add plant form / table / all the things, use this as a template
   app.post('/api/form', async (req, res) => {
+    console.log("made it to line 61 in back-end/index.js");
     try {
       const name  = req.body.name;
       const email = req.body.email;
@@ -64,6 +69,7 @@ const createTable = async () => {
         res.status(200).send(req.body);
       }
     } catch (error) {
+      console.log("FAILED: `app.post` Error at line 71 or below in back-end/index.js" );
       res.status(500).send('Error');
       console.log(error);
     }    

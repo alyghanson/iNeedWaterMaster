@@ -9,8 +9,8 @@ const PostUser = () => {
       email: '',
     })
     const createUser = async () => {
-      await axios
-      .post("http://localhost:8000/api/form", 
+      console.log("made it to line 13 in front-end/PostUser.jsx");
+      await axios.post("http://localhost:3001/api/form", 
       user,
       {
         headers: {
@@ -18,12 +18,14 @@ const PostUser = () => {
         }
       })
       .then((response) => {
+        // Log what was sent for debugging
+        console.log("Full form response (before setting): ", response.data);
         setUser({      
           name: '',
           age: '',
           email: '',
         })
-        console.log(response)
+        // console.log(response)
         return alert("User Created: " + `${JSON.stringify(response.data, null,4)}`);
         })
       .catch((err) => {

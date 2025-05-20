@@ -6,8 +6,12 @@ import { useEffect, useState } from "react";
 const GetAllUser = () => {
   const [users, setAllUser] = useState();
   useEffect(() => {
-    axios.get("http://localhost:3001/api")
-    .then((response) => console.log(response))
+    axios.get("http://localhost:3001/api/all")
+    //print user object to console
+    .then((response) => {console.log(response)
+      // set for display
+      setAllUser(response.data);
+    })
     
   }, []);
     return (
