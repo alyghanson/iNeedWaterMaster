@@ -19,11 +19,44 @@ client.connect();
 
 //Create table
 //TODO: switch to correct information PLANTS NOT USERS
-const createTable = async () => { 
-    await client.query(`CREATE TABLE IF NOT EXISTS users 
-    (id serial PRIMARY KEY, name VARCHAR (255) NOT NULL, 
-    email VARCHAR (255) NOT NULL, age INT NOT NULL);`)
-  };
+// const createTable = async () => { 
+//     await client.query(`CREATE TABLE IF NOT EXISTS users 
+//     (id serial PRIMARY KEY, name VARCHAR (255) NOT NULL, 
+//     email VARCHAR (255) NOT NULL, age INT NOT NULL);`)
+//   };
+
+//Create Plant table
+const createTable = async () => {
+  await client.query(`CREATE TABLE IF NOT EXISTS plants 
+    (id serial PRIMARY KEY, 
+    name VARCHAR (255) NOT NULL, 
+    common_name VARCHAR (255) NOT NULL, 
+    scientific_name VARCHAR (255) NOT NULL,
+    description TEXT NOT NULL,
+    last_water_date DATE NOT NULL,
+    watering_frequency_days INT NOT NULL,
+    soil_type VARCHAR (255) NOT NULL,
+    plant_type VARCHAR (255) NOT NULL,
+    location VARCHAR (255) NOT NULL,
+    last_fertilization DATE NOT NULL);`)
+};
+
+
+  // {
+  //   "name": "rowhjlpnqweq",
+  //   "common_name": "Cactus",
+  //   "scientific_name": "Cactaceae family",
+  //   "description": "Thrives in bright, indirect light and adds a tropical feel.",
+  //   "last_water_date": "2025-04-29",
+  //   "watering_frequency_days": 3,
+  //   "soil_type": "Well-draining peat-based mix",
+  //   "plant_type": "Desert succulent",
+  //   "location": " Downstairs Bedroom",
+  //   "last_fertilization": "2025-04-15"
+  // },
+
+
+
 // comment out to test routes
   createTable();
 
