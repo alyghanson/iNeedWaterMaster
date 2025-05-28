@@ -27,6 +27,13 @@ const GetAllPlant = () => {
             name: {plant.name} <br></br>
             common_name: {plant.common_name} <br></br>
             scientific_name: {plant.scientific_name} <br></br>
+            description: {plant.description} <br></br>
+            last_water_date: {plant.last_water_date} <br></br>
+            watering_frequency_days: {plant.watering_frequency_days} <br></br>
+            soil_type: {plant.soil_type} <br></br>
+            plant_type: {plant.plant_type} <br></br>
+            location: {plant.location} <br></br>
+            last_fertilization: {plant.last_fertilization} <br></br>
           </li>
         )}
         </ul>

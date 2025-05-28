@@ -2,93 +2,181 @@ import axios from "axios";
 import { useState } from "react";
 
 const PostPlant = () => {
-  
-    const [plant, setPlant] = useState({
-      name: '',
-      commonName: '',
-      scientificName: '',
-    })
-    const createPlant = async () => {
-      console.log("made it to line 13 in front-end/PostPlant.jsx");
-      await axios.post("http://localhost:3001/api/form", 
+  // Use snake_case to match backend/database
+  const [plant, setPlant] = useState({
+    name: '',
+    common_name: '',
+    scientific_name: '',
+    description: '',
+    last_water_date: '',
+    watering_frequency_days: '',
+    soil_type: '',
+    plant_type: '',
+    location: '',
+    last_fertilization: ''
+  });
+
+  const createPlant = async () => {
+    // console.log("made it to line 13 in front-end/PostPlant.jsx");
+    await axios.post(
+      "http://localhost:3001/api/form",
       plant,
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json'
         }
-      })
-      .then((response) => {
-        // Log what was sent for debugging
-        console.log("Full form response (before setting): ", response.data);
-        setPlant({      
-          name: '',
-          commonName: '',
-          scientificName: '',
-        })
-        // console.log(response)
-        return alert("User Created: " + `${JSON.stringify(response.data, null,4)}`);
-        })
-      .catch((err) => {
-        return alert(err);
-      });
-    }
-    const onChangeForm = (e) => {
-      if (e.target.name === 'name') {
-        setPlant({...plant, name: e.target.value});
-      } else if (e.target.name === 'commonName') {
-        setPlant({...plant, commonName: e.target.value});
-      } else if (e.target.name === 'scientificName') {
-        setPlant({...plant, scientificName: e.target.value});
       }
-  }
-    return (
-      <div >
-          <div>
-              <div>
-              <h1>Create Plant</h1>
-              <form>
-                  <div>
-                      <div>
-                          <label>Name</label>
-                          <input 
-                            type="text" 
-                            value={plant.name}
-                            onChange={(e) => onChangeForm(e)} 
-                            name="name" 
-                            id="name" 
-                            placeholder="Name" 
-                          />
-                      </div>
-                      <div>
-                          <label>Common Name</label>
-                          <input 
-                            type="text" 
-                            value={plant.commonName}
-                            onChange={(e) => onChangeForm(e)} 
-                            name="commonName" 
-                            id="commonName" 
-                            placeholder="Common Name" 
-                          />
-                      </div>
-                  </div>
-                  <div>
-                      <div>
-                          <label htmlFor="exampleInputEmail1">Latin Name</label>
-                          <input 
-                            type="text" 
-                            value={plant.scientificName}
-                            onChange={(e) => onChangeForm(e)} 
-                            name="scientificName" id="scientificName" 
-                            placeholder="Scientific Name" 
-                          />
-                      </div>
-                  </div>
-                  <button type="button" onClick= {()=>createPlant()}>Create</button>
-              </form>
-              </div>
-          </div>
-      </div>
-      );
+    )
+    .then((response) => {
+      console.log("Full form response (before setting): ", response.data);
+      setPlant({
+        name: '',
+        common_name: '',
+        scientific_name: '',
+        description: '',
+        last_water_date: '',
+        watering_frequency_days: '',
+        soil_type: '',
+        plant_type: '',
+        location: '',
+        last_fertilization: ''
+      });
+      return alert("Plant Created: " + `${JSON.stringify(response.data, null, 4)}`);
+    })
+    .catch((err) => {
+      return alert(err);
+    });
   };
-  
-  export default PostPlant;
+
+  const onChangeForm = (e) => {
+    setPlant({
+      ...plant,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  return (
+    <div>
+      <div>
+        <div>
+          <h1>Create Plant</h1>
+          <form>
+            <div>
+              <div>
+                <label>Name</label>
+                <input
+                  type="text"
+                  value={plant.name}
+                  onChange={onChangeForm}
+                  name="name"
+                  id="name"
+                  placeholder="Name"
+                />
+              </div>
+              <div>
+                <label>Common Name</label>
+                <input
+                  type="text"
+                  value={plant.common_name}
+                  onChange={onChangeForm}
+                  name="common_name"
+                  id="common_name"
+                  placeholder="Common Name"
+                />
+              </div>
+              <div>
+                <label>Scientific Name</label>
+                <input
+                  type="text"
+                  value={plant.scientific_name}
+                  onChange={onChangeForm}
+                  name="scientific_name"
+                  id="scientific_name"
+                  placeholder="Scientific Name"
+                />
+              </div>
+              <div>
+                <label>Description</label>
+                <input
+                  type="text"
+                  value={plant.description}
+                  onChange={onChangeForm}
+                  name="description"
+                  id="description"
+                  placeholder="Description"
+                />
+              </div>
+              <div>
+                <label>Last Water Date</label>
+                <input
+                  type="date"
+                  value={plant.last_water_date}
+                  onChange={onChangeForm}
+                  name="last_water_date"
+                  id="last_water_date"
+                />
+              </div>
+              <div>
+                <label>Watering Frequency (days)</label>
+                <input
+                  type="number"
+                  value={plant.watering_frequency_days}
+                  onChange={onChangeForm}
+                  name="watering_frequency_days"
+                  id="watering_frequency_days"
+                  placeholder="Watering Frequency (days)"
+                />
+              </div>
+              <div>
+                <label>Soil Type</label>
+                <input
+                  type="text"
+                  value={plant.soil_type}
+                  onChange={onChangeForm}
+                  name="soil_type"
+                  id="soil_type"
+                  placeholder="Soil Type"
+                />
+              </div>
+              <div>
+                <label>Plant Type</label>
+                <input
+                  type="text"
+                  value={plant.plant_type}
+                  onChange={onChangeForm}
+                  name="plant_type"
+                  id="plant_type"
+                  placeholder="Plant Type"
+                />
+              </div>
+              <div>
+                <label>Location</label>
+                <input
+                  type="text"
+                  value={plant.location}
+                  onChange={onChangeForm}
+                  name="location"
+                  id="location"
+                  placeholder="Location"
+                />
+              </div>
+              <div>
+                <label>Last Fertilization</label>
+                <input
+                  type="date"
+                  value={plant.last_fertilization}
+                  onChange={onChangeForm}
+                  name="last_fertilization"
+                  id="last_fertilization"
+                />
+              </div>
+            </div>
+            <button type="button" onClick={createPlant}>Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PostPlant;

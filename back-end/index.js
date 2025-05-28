@@ -16,39 +16,35 @@ const client = new Client({
 
 //Comment out to test routes
 client.connect();
+console.log("Connected to Postgres database");
 //Create Plant table
-const createTable = async () => {
-  await client.query(`CREATE TABLE IF NOT EXISTS plants 
-    (id serial PRIMARY KEY, 
-    name VARCHAR (255) NOT NULL, 
-    common_name VARCHAR (255), 
-    scientific_name VARCHAR (255),
-    description TEXT,
-    last_water_date DATE,
-    watering_frequency_days INT,
-    soil_type VARCHAR (255),
-    plant_type VARCHAR (255),
-    location VARCHAR (255),
-    last_fertilization DATE);`)
+//This will need a migration system in the future
+//We drop the table if it exists and create a new one just for building the app, 
+//need to change this in the future because we want the data to persist
+const dropTable = async () => {
+  await client.query(`DROP TABLE IF EXISTS plants;`);
+  console.log("Dropped plants table, TODO change this in the future to not drop table");
 };
-
-// Example Plant Data
-// {
-//   "name": "rowhjlpnqweq",
-//   "common_name": "Cactus",
-//   "scientific_name": "Cactaceae family",
-//   "description": "Thrives in bright, indirect light and adds a tropical feel.",
-//   "last_water_date": "2025-04-29",
-//   "watering_frequency_days": 3,
-//   "soil_type": "Well-draining peat-based mix",
-//   "plant_type": "Desert succulent",
-//   "location": " Downstairs Bedroom",
-//   "last_fertilization": "2025-04-15"
-// },
-
+const createTable = async () => {
+  console.log("Creating plants table");
+  await client.query(`CREATE TABLE IF NOT EXISTS plants (
+    id serial PRIMARY KEY, 
+    name VARCHAR (255) NOT NULL, 
+    common_name VARCHAR (255) NOT NULL, 
+    scientific_name VARCHAR (255) NOT NULL,
+    description TEXT NOT NULL,
+    last_water_date DATE NOT NULL,
+    watering_frequency_days INT NOT NULL,
+    soil_type VARCHAR (255) NOT NULL,
+    plant_type VARCHAR (255) NOT NULL,
+    location VARCHAR (255) NOT NULL,
+    last_fertilization DATE NOT NULL
+  );`)
+};
 
 
 // comment out to test routes
+  dropTable()
   createTable();
 
   const app = express();
@@ -83,10 +79,9 @@ const createTable = async () => {
   //create POST method to get info from form
   //TODO add plant form / table / all the things, use this as a template
   app.post('/api/form', async (req, res) => {
-    console.log("made it to line 61 in back-end/index.js");
+    // console.log("made it to line 61 in back-end/index.js");
     try {
-
-      // Update to use plant data
+      // Use camelCase for JS variables
       const name = req.body.name;
       const common_name = req.body.common_name;
       const scientific_name = req.body.scientific_name;
@@ -97,14 +92,40 @@ const createTable = async () => {
       const plant_type = req.body.plant_type;
       const location = req.body.location;
       const last_fertilization = req.body.last_fertilization;
-  
-      const response = await client.query(`INSERT INTO plants(name, common_name, scientific_name, description, last_water_date, watering_frequency_days, soil_type, plant_type, location, last_fertilization) VALUES ('${name}', '${common_name}', '${scientific_name}', '${description}', '${last_water_date}', ${watering_frequency_days}, '${soil_type}', '${plant_type}', '${location}', '${last_fertilization}');`);
-      
-      if(response){
+
+      // Use parameterized query to prevent SQL injection
+      const response = await client.query(
+        `INSERT INTO plants(
+          name, 
+          common_name, 
+          scientific_name, 
+          description, 
+          last_water_date, 
+          watering_frequency_days, 
+          soil_type, 
+          plant_type, 
+          location, 
+          last_fertilization
+        ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
+        [
+          name,
+          common_name,
+          scientific_name,
+          description,
+          last_water_date,
+          watering_frequency_days,
+          soil_type,
+          plant_type,
+          location,
+          last_fertilization
+        ]
+      );
+
+      if (response) {
         res.status(200).send(req.body);
       }
     } catch (error) {
-      console.log("FAILED: `app.post` Error at line 87 or below in back-end/index.js" );
+      console.log("FAILED: `app.post` Error at line 87 or below in back-end/index.js");
       res.status(500).send('Error');
       console.log(error);
     }
