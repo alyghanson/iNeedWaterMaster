@@ -16,44 +16,35 @@ const client = new Client({
 
 //Comment out to test routes
 client.connect();
-
-//Create table
-//TODO: switch to correct information PLANTS NOT USERS
-// const createTable = async () => { 
-//     await client.query(`CREATE TABLE IF NOT EXISTS users 
-//     (id serial PRIMARY KEY, name VARCHAR (255) NOT NULL, 
-//     email VARCHAR (255) NOT NULL, age INT NOT NULL);`)
-//   };
-
 //Create Plant table
 const createTable = async () => {
   await client.query(`CREATE TABLE IF NOT EXISTS plants 
     (id serial PRIMARY KEY, 
     name VARCHAR (255) NOT NULL, 
-    common_name VARCHAR (255) NOT NULL, 
-    scientific_name VARCHAR (255) NOT NULL,
-    description TEXT NOT NULL,
-    last_water_date DATE NOT NULL,
-    watering_frequency_days INT NOT NULL,
-    soil_type VARCHAR (255) NOT NULL,
-    plant_type VARCHAR (255) NOT NULL,
-    location VARCHAR (255) NOT NULL,
-    last_fertilization DATE NOT NULL);`)
+    common_name VARCHAR (255), 
+    scientific_name VARCHAR (255),
+    description TEXT,
+    last_water_date DATE,
+    watering_frequency_days INT,
+    soil_type VARCHAR (255),
+    plant_type VARCHAR (255),
+    location VARCHAR (255),
+    last_fertilization DATE);`)
 };
 
-
-  // {
-  //   "name": "rowhjlpnqweq",
-  //   "common_name": "Cactus",
-  //   "scientific_name": "Cactaceae family",
-  //   "description": "Thrives in bright, indirect light and adds a tropical feel.",
-  //   "last_water_date": "2025-04-29",
-  //   "watering_frequency_days": 3,
-  //   "soil_type": "Well-draining peat-based mix",
-  //   "plant_type": "Desert succulent",
-  //   "location": " Downstairs Bedroom",
-  //   "last_fertilization": "2025-04-15"
-  // },
+// Example Plant Data
+// {
+//   "name": "rowhjlpnqweq",
+//   "common_name": "Cactus",
+//   "scientific_name": "Cactaceae family",
+//   "description": "Thrives in bright, indirect light and adds a tropical feel.",
+//   "last_water_date": "2025-04-29",
+//   "watering_frequency_days": 3,
+//   "soil_type": "Well-draining peat-based mix",
+//   "plant_type": "Desert succulent",
+//   "location": " Downstairs Bedroom",
+//   "last_fertilization": "2025-04-15"
+// },
 
 
 
@@ -75,7 +66,8 @@ const createTable = async () => {
   //TODO change to correct table
   app.get('/api/all', async (req, res) => {
     try {
-      const response = await client.query(`SELECT * FROM users`);
+      // const response = await client.query(`SELECT * FROM users`);
+      const response = await client.query(`SELECT * FROM plants`);
       
       if(response){
         res.status(200).send(response.rows);
@@ -93,19 +85,29 @@ const createTable = async () => {
   app.post('/api/form', async (req, res) => {
     console.log("made it to line 61 in back-end/index.js");
     try {
-      const name  = req.body.name;
-      const email = req.body.email;
-      const age   = req.body.age;
+
+      // Update to use plant data
+      const name = req.body.name;
+      const common_name = req.body.common_name;
+      const scientific_name = req.body.scientific_name;
+      const description = req.body.description;
+      const last_water_date = req.body.last_water_date;
+      const watering_frequency_days = req.body.watering_frequency_days;
+      const soil_type = req.body.soil_type;
+      const plant_type = req.body.plant_type;
+      const location = req.body.location;
+      const last_fertilization = req.body.last_fertilization;
   
-  const response = await client.query(`INSERT INTO users(name, email, age) VALUES ('${name}', '${email}', ${age});`);
+      const response = await client.query(`INSERT INTO plants(name, common_name, scientific_name, description, last_water_date, watering_frequency_days, soil_type, plant_type, location, last_fertilization) VALUES ('${name}', '${common_name}', '${scientific_name}', '${description}', '${last_water_date}', ${watering_frequency_days}, '${soil_type}', '${plant_type}', '${location}', '${last_fertilization}');`);
+      
       if(response){
         res.status(200).send(req.body);
       }
     } catch (error) {
-      console.log("FAILED: `app.post` Error at line 71 or below in back-end/index.js" );
+      console.log("FAILED: `app.post` Error at line 87 or below in back-end/index.js" );
       res.status(500).send('Error');
       console.log(error);
-    }    
+    }
   });
 
   //specify port for listener: port 3000 here

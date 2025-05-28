@@ -1,17 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
 
-const PostUser = () => {
+const PostPlant = () => {
   
-    const [user, setUser] = useState({
+    const [plant, setPlant] = useState({
       name: '',
-      age: '',
-      email: '',
+      commonName: '',
+      scientificName: '',
     })
-    const createUser = async () => {
-      console.log("made it to line 13 in front-end/PostUser.jsx");
+    const createPlant = async () => {
+      console.log("made it to line 13 in front-end/PostPlant.jsx");
       await axios.post("http://localhost:3001/api/form", 
-      user,
+      plant,
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -20,10 +20,10 @@ const PostUser = () => {
       .then((response) => {
         // Log what was sent for debugging
         console.log("Full form response (before setting): ", response.data);
-        setUser({      
+        setPlant({      
           name: '',
-          age: '',
-          email: '',
+          commonName: '',
+          scientificName: '',
         })
         // console.log(response)
         return alert("User Created: " + `${JSON.stringify(response.data, null,4)}`);
@@ -34,25 +34,25 @@ const PostUser = () => {
     }
     const onChangeForm = (e) => {
       if (e.target.name === 'name') {
-        setUser({...user, name: e.target.value});
-      } else if (e.target.name === 'age') {
-        setUser({...user, age: e.target.value});
-      } else if (e.target.name === 'email') {
-        setUser({...user, email: e.target.value});
+        setPlant({...plant, name: e.target.value});
+      } else if (e.target.name === 'commonName') {
+        setPlant({...plant, commonName: e.target.value});
+      } else if (e.target.name === 'scientificName') {
+        setPlant({...plant, scientificName: e.target.value});
       }
   }
     return (
       <div >
           <div>
               <div>
-              <h1>Create User</h1>
+              <h1>Create Plant</h1>
               <form>
                   <div>
                       <div>
                           <label>Name</label>
                           <input 
                             type="text" 
-                            value={user.name}
+                            value={plant.name}
                             onChange={(e) => onChangeForm(e)} 
                             name="name" 
                             id="name" 
@@ -60,30 +60,30 @@ const PostUser = () => {
                           />
                       </div>
                       <div>
-                          <label>Age</label>
+                          <label>Common Name</label>
                           <input 
                             type="text" 
-                            value={user.age}
+                            value={plant.commonName}
                             onChange={(e) => onChangeForm(e)} 
-                            name="age" 
-                            id="age" 
-                            placeholder="Age" 
+                            name="commonName" 
+                            id="commonName" 
+                            placeholder="Common Name" 
                           />
                       </div>
                   </div>
                   <div>
                       <div>
-                          <label htmlFor="exampleInputEmail1">Email</label>
+                          <label htmlFor="exampleInputEmail1">Latin Name</label>
                           <input 
                             type="text" 
-                            value={user.email}
+                            value={plant.scientificName}
                             onChange={(e) => onChangeForm(e)} 
-                            name="email" id="email" 
-                            placeholder="Email" 
+                            name="scientificName" id="scientificName" 
+                            placeholder="Scientific Name" 
                           />
                       </div>
                   </div>
-                  <button type="button" onClick= {()=>createUser()}>Create</button>
+                  <button type="button" onClick= {()=>createPlant()}>Create</button>
               </form>
               </div>
           </div>
@@ -91,4 +91,4 @@ const PostUser = () => {
       );
   };
   
-  export default PostUser;
+  export default PostPlant;

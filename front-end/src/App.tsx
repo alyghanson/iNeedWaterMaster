@@ -8,8 +8,8 @@ import PlantList from './Pages/PlantList';
 //TODO change to plants not users
 import Layout from "./Components/Layout";
 import Home from "./Components/Home";
-import PostUser from "./Components/PostUser";
-import GetAllUser from "./Components/GetAllUser";
+import PostPlant from "./Components/PostPlant";
+import GetAllPlant from "./Components/GetAllPlant";
 
 
 //Build Edit page -> fix last four route to integrate plants not users
@@ -25,8 +25,8 @@ export default function App() {
 
         <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="post" element={<PostUser />} />
-        <Route path="get" element={<GetAllUser />} />
+        <Route path="post" element={<PostPlant />} />
+        <Route path="get" element={<GetAllPlant />} />
         </Route>
 
       </Routes>
