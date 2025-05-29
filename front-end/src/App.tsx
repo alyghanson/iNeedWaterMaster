@@ -1,4 +1,3 @@
-import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './Pages/Login';
 import Main from './Pages/Main';
@@ -33,9 +32,3 @@ export default function App() {
     </BrowserRouter>
   );
 }
-
-
-{/* Added this with tutorial? not sure if it is needed*/}
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(<App />);
-

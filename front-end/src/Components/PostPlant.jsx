@@ -41,7 +41,7 @@ const PostPlant = () => {
         location: '',
         last_fertilization: ''
       });
-      return alert("Plant Created: " + `${JSON.stringify(response.data, null, 4)}`);
+      return alert("Plant created successfully!");
     })
     .catch((err) => {
       return alert(err);

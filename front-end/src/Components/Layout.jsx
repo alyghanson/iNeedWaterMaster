@@ -13,6 +13,9 @@ const Layout = () => {
           </li>
           <li>
             <Link to="/get">Get All User</Link>
+          </li>          
+          <li>
+            <Link to="/main">see the plants here -- testing</Link>
           </li>
         </ul>
       </nav>

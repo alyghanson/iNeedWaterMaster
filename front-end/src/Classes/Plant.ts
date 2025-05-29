@@ -1,6 +1,9 @@
 
 
 class Plant {
+    /**id -> unique identifier for plant */
+    id: number;
+    /**name -> name of plant, used for display */
     name: string;
     /**Common Name -> words to be displayed on action card */
     commonName: string;
@@ -24,6 +27,7 @@ class Plant {
     nextWaterDate: string;
 
     constructor (params: Record <string, any>) {
+        this.id = params.plant_id;
         this.name = params.name;
         this.commonName = params.common_name;
         this.scientificName = params.scientific_name;
