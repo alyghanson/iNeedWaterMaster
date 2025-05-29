@@ -1,6 +1,9 @@
 #Huge big file
 data/
 
+#Hidden files
+.DS_Store
+
 # Logs
 logs
 *.log
