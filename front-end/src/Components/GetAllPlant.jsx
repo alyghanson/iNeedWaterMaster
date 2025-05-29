@@ -13,7 +13,6 @@ const GetAllPlant = () => {
       setAllPlant(response.data);
     })
     .catch((error) => {
-      console.log("FAILED: `axios.get` Error at line 12 or below in front-end/src/Components/GetAllPlant.jsx");
       console.log(error);
     });
   }, []);
